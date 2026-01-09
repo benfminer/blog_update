@@ -12,4 +12,8 @@
     </div>
 <% end %>
 
-<%== @pagy.series_nav() %>
+<% if @pagy.count > @pagy.limit %>
+    <div>
+            <%== @pagy.series_nav() %>
+    </div>
+<% end %>
