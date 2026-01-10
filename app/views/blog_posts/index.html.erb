@@ -1,15 +1,14 @@
 <h1>My Blog</h1>
 
 <% @blog_posts.each do |blog_post|  %>
-    <div class="flex size-lg border-2 rounded-sm drop-shadow-gray-400">
-        <h2 class="text-2xl"><%= link_to blog_post.title, blog_post %></h2>
-        <% if blog_post.draft? %>
-            <div class="rounded p-2 bg-gray-100 text-gray-900">Draft</div>
-        <% elsif blog_post.scheduled? %>
-            <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
-        <% end %>
-        <p><%= blog_post.content %></p>
-    </div>
+    <%= image_tag blog_post.cover_image, class: "w-auto" if blog_post.cover_image.present? %>
+    <h2 class="text-2xl"><%= link_to blog_post.title, blog_post %></h2>
+    <% if blog_post.draft? %>
+        <div class="rounded p-2 bg-gray-100 text-gray-900">Draft</div>
+    <% elsif blog_post.scheduled? %>
+        <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
+    <% end %>
+    <p><%= blog_post.content %></p>
 <% end %>
 
 <% if @pagy.count > @pagy.limit %>
